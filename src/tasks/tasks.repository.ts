@@ -33,8 +33,8 @@ export class TasksRepository extends Repository<Task> {
     return tasks;
   }
 
-  async getTaskById(id: string): Promise<Task> {
-    const found = await this.findOneBy({ id: id });
+  async getTaskById(id: string, user: User): Promise<Task> {
+    const found = await this.findOneBy({ id: id, user: user });
 
     if (!found) {
       throw new NotFoundException(`Task with ID ${id} not found`);
